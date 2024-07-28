@@ -392,13 +392,15 @@ export async function acceptReport(context, reportId, damages){
 
 To see better how the app works here is a video of 1 minute of all the use cases:
 
-![WhatsApp Image 2024-07-27 at 18.50.00 (2).jpeg](readme-resources/readme-images/WhatsApp_Image_2024-07-27_at_18.50.00_(2).jpeg)
+<p align="center">
+  <img src="readme-resources/readme-images/WhatsApp_Image_2024-07-27_at_18.50.00_(2).jpeg" width="45%" />
+  <img src="readme-resources/readme-images/WhatsApp_Image_2024-07-27_at_18.49.59.jpeg" width="45%" />
+</p>
+<p align="center">
+  <img src="readme-resources/readme-images/WhatsApp_Image_2024-07-27_at_18.50.00_(1).jpeg" width="45%" />
+  <img src="readme-resources/readme-images/WhatsApp_Image_2024-07-27_at_18.49.59_(1).jpeg" width="45%" />
+</p>
 
-![WhatsApp Image 2024-07-27 at 18.49.59.jpeg](readme-resources/readme-images/WhatsApp_Image_2024-07-27_at_18.49.59.jpeg)
-
-![WhatsApp Image 2024-07-27 at 18.50.00 (1).jpeg](readme-resources/readme-images/WhatsApp_Image_2024-07-27_at_18.50.00_(1).jpeg)
-
-![WhatsApp Image 2024-07-27 at 18.49.59 (1).jpeg](readme-resources/readme-images/WhatsApp_Image_2024-07-27_at_18.49.59_(1).jpeg)
 
 # 6. Authentication
 
