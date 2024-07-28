@@ -1,17 +1,74 @@
+<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
+<!-- TOC --><a name="insurance-documentation"></a>
 # Insurance Documentation
 
+
+- [1. Introduction](#1-introduction)
+   * [1.1. Overview](#11-overview)
+   * [1.2. Purpose](#12-purpose)
+   * [1.3. Features](#13-features)
+- [2. Project Structure](#2-project-structure)
+   * [2.1. Backend (Spring Boot)](#21-backend-spring-boot)
+   * [2.2. Frontend (JavaFX)](#22-frontend-javafx)
+   * [2.3. Frontend (React Native)](#23-frontend-react-native)
+   * [2.4. Documents](#24-documents)
+- [3. Getting Started](#3-getting-started)
+   * [3.1. Backend](#31-backend)
+   * [3.2. JavaFX Frontend](#32-javafx-frontend)
+   * [3.3. React Native Frontend](#33-react-native-frontend)
+- [4. Spring Boot Application Architecture](#4-spring-boot-application-architecture)
+   * [4.1. Authentication](#41-authentication)
+      + [**4.1.1. Short-lived `accessToken`**](#411-short-lived-accesstoken)
+      + [**4.1.2. Long-lived `token`**](#412-long-lived-token)
+      + [**4.1.3. Refreshing the `accessToken`**](#413-refreshing-the-accesstoken)
+   * [4.2. Domain](#42-domain)
+   * [4.3. Endpoints](#43-endpoints)
+- [5. Frontend Integration](#5-frontend-integration)
+   * [5.1. JavaFX Frontend](#51-javafx-frontend)
+      + [5.1.1. Authentication Flow](#511-authentication-flow)
+      + [5.1.2. Handling API Responses](#512-handling-api-responses)
+      + [5.1.3. Appearance](#513-appearance)
+   * [5.2. React Native Frontend](#52-react-native-frontend)
+      + [5.2.1. Authentication Flow](#521-authentication-flow)
+      + [5.2.2. Handling API Reponses](#522-handling-api-reponses)
+      + [5.2.3. Appearance](#523-appearance)
+- [6. Authentication](#6-authentication)
+   * [6.1. Overview of JWT](#61-overview-of-jwt)
+- [6. API Endpoints](#6-api-endpoints)
+   * [6.1. List of Endpoints](#61-list-of-endpoints)
+   * [6.2. Auth](#62-auth)
+      + [6.2.1. Login](#621-login)
+      + [6.2.2. Register](#622-register)
+      + [6.2.3. Refresh Token](#623-refresh-token)
+      + [6.2.4.  Logout](#624-logout)
+   * [6.3. Vehicle](#63-vehicle)
+      + [6.3.1. Get Vehicle by ID](#631-get-vehicle-by-id)
+      + [6.3.2. Get Vehicle by Plate](#632-get-vehicle-by-plate)
+      + [6.3.3. Get All Vehicles](#633-get-all-vehicles)
+      + [6.3.4. Create Vehicle](#634-create-vehicle)
+      + [6.3.5. Update Vehicle](#635-update-vehicle)
+      + [6.3.6. Delete Vehicle](#636-delete-vehicle)
+
+<!-- TOC end -->
+
+
+
+<!-- TOC --><a name="1-introduction"></a>
 # 1. Introduction
 
+<!-- TOC --><a name="11-overview"></a>
 ## 1.1. Overview
 
 The project consists of a Spring Boot server consumed by both JavaFX and React Native frontends. The users, who are vehicles, can manage reports against other vehicles and manage their information. The backend provides a RESTful API that handles authentication via JWT tokens and various operations related to the vehicles and reports. The JavaFX frontend is a desktop application, while the React Native frontend is designed for mobile devices.
 
+<!-- TOC --><a name="12-purpose"></a>
 ## 1.2. Purpose
 
 This project was developed to fulfill the requirements of three subjects: Secure Coding, Advanced Information System Interoperability, and Advanced Programming Paradigms. The general documentation of the project is provided in this document, while the documentation specific to each subject is located in the documents folder.
 
 The audience for this document includes anyone interested in the development process, as well as those looking to learn about Spring Boot and how to consume its services using JavaFX or React Native.
 
+<!-- TOC --><a name="13-features"></a>
 ## 1.3. Features
 
 The user stories for the project are:
@@ -23,8 +80,10 @@ The user stories for the project are:
 - As a vehicle, I want to be able to close a report by rejecting or accepting it, so I can finalize the report's status.
 - As a vehicle, I want to be able to see all the details of a report, so I can accurately remember what happened.
 
+<!-- TOC --><a name="2-project-structure"></a>
 # 2. Project Structure
 
+<!-- TOC --><a name="21-backend-spring-boot"></a>
 ## 2.1. Backend (Spring Boot)
 
 - **Repository Link**
@@ -43,6 +102,7 @@ The user stories for the project are:
         - JWT for security
         - Mock H2 for the database
 
+<!-- TOC --><a name="22-frontend-javafx"></a>
 ## 2.2. Frontend (JavaFX)
 
 - **Repository Link**
@@ -59,6 +119,7 @@ The user stories for the project are:
         - JavaFX
         - FXML for UI design
 
+<!-- TOC --><a name="23-frontend-react-native"></a>
 ## 2.3. Frontend (React Native)
 
 - **Repository Link**
@@ -76,6 +137,7 @@ The user stories for the project are:
         - React Navigation
         - Context API for state management
 
+<!-- TOC --><a name="24-documents"></a>
 ## 2.4. Documents
 
 As said before, the project has fulfill the requirements of three different subjects. Each of the subject requieres several specifications that are documented in three different documents located in the documents folder. The content of each of the documents are:
@@ -86,8 +148,10 @@ As said before, the project has fulfill the requirements of three different subj
 
 Good to highlight that the present document summarize everything is needed for understanding the project.
 
+<!-- TOC --><a name="3-getting-started"></a>
 # 3. Getting Started
 
+<!-- TOC --><a name="31-backend"></a>
 ## 3.1. Backend
 
 There are two ways to set up the backend:
@@ -112,6 +176,7 @@ There are two ways to set up the backend:
         This command runs a container from the `mrcharlessg/insurance-backend` image, mapping port 8082 on the host to port 8081 in the container.
         
 
+<!-- TOC --><a name="32-javafx-frontend"></a>
 ## 3.2. JavaFX Frontend
 
 To run the JavaFX frontend, ensure the backend is running. IntelliJ IDEA is also required.
@@ -121,6 +186,7 @@ To run the JavaFX frontend, ensure the backend is running. IntelliJ IDEA is also
     - The JavaFX application will automatically connect to the server if the port is 8082.
     - If the server is on a different port, update the file: `src/main/java/hr/algebra/javafxinsurance/configuration/ApiConfig.java`.
 
+<!-- TOC --><a name="33-react-native-frontend"></a>
 ## 3.3. React Native Frontend
 
 1. **Clone the repository**:
@@ -155,10 +221,12 @@ To run the JavaFX frontend, ensure the backend is running. IntelliJ IDEA is also
     ```
     
 
+<!-- TOC --><a name="4-spring-boot-application-architecture"></a>
 # 4. Spring Boot Application Architecture
 
 The Spring Boot application follows the layered architecture pattern with controllers, services, and repositories, where controllers expose and handle the HTTP request, services contain the business process and interact with repositories. This last ones access the database using JPA.
 
+<!-- TOC --><a name="41-authentication"></a>
 ## 4.1. Authentication
 
 All endpoints in the server, except for **`/auth`** and **`/vehicles`**, are protected. Users need an **`accessToken`** to access the protected endpoints. Nevertheless there are other endpoints not protected. Here’s why those specific endpoints aren’t protected:
@@ -183,14 +251,17 @@ When registering, the user also receives their information wrapped in a wrapper.
 
 The **`accessToken`** allows the user to access protected endpoints. However, it is valid for only 10 minutes, while the **`token`** is valid for seven days. Here’s why:
 
+<!-- TOC --><a name="411-short-lived-accesstoken"></a>
 ### **4.1.1. Short-lived `accessToken`**
 
 The **`accessToken`** is valid for 10 minutes to minimize security risks. Since the **`accessToken`** is used frequently in almost every request to protected endpoints, there is a higher risk of it being intercepted or stolen. By limiting its lifespan, the window of opportunity for an attacker to use a stolen token is significantly reduced, enhancing overall security.
 
+<!-- TOC --><a name="412-long-lived-token"></a>
 ### **4.1.2. Long-lived `token`**
 
 The **`token`**, on the other hand, is valid for seven days. This longer lifespan provides a more convenient user experience. Users don’t have to log in repeatedly throughout the day. Instead, they can use the **`token`** to refresh their **`accessToken`** when it expires. This way, users only need to log in once a week, balancing security and convenience.
 
+<!-- TOC --><a name="413-refreshing-the-accesstoken"></a>
 ### **4.1.3. Refreshing the `accessToken`**
 
 To refresh the **`accessToken`**, the user calls the **`/auth/api/v1/refreshToken`** endpoint with the **`token`** in the request body. This process extends the user's session without requiring them to re-enter their credentials frequently, thus maintaining a seamless and secure user experience.
@@ -211,10 +282,12 @@ The JwtReponseAspect is an aspect executed arround the function in the AuthContr
 
 ![https://github.com/MrCharlesSG/Insurance-Documentation/raw/main/documents/Secure%20Coding/images/Untitled%201.png](https://github.com/MrCharlesSG/Insurance-Documentation/raw/main/documents/Secure%20Coding/images/Untitled%201.png)
 
+<!-- TOC --><a name="42-domain"></a>
 ## 4.2. Domain
 
 ![AssuranceDiagrams3.png](readme-resources/readme-images/AssuranceDiagrams3.png)
 
+<!-- TOC --><a name="43-endpoints"></a>
 ## 4.3. Endpoints
 
 As previously mentioned, almost all endpoints are protected. When an endpoint is called, a filter determines whether the user is authenticated by checking for a valid `accessToken` in the Authentication header.
@@ -236,12 +309,15 @@ It is worth highlighting that all endpoints have comprehensive integration tests
 
 The backend also exposes various metrics for monitoring and performance analysis. For more detailed information, please refer to the document located at  https://github.com/MrCharlesSG/Insurance-Documentation/blob/main/documents/Paradigms/Paradigms.md
 
+<!-- TOC --><a name="5-frontend-integration"></a>
 # 5. Frontend Integration
 
+<!-- TOC --><a name="51-javafx-frontend"></a>
 ## 5.1. JavaFX Frontend
 
 The JavaFX frontend is a desktop application providing a graphical user interface for users to interact with the system. Uses the MVC pattern to separate concerns. The controllers are directly related to its views and uses a service layer to access the backend. 
 
+<!-- TOC --><a name="511-authentication-flow"></a>
 ### 5.1.1. Authentication Flow
 
 The tokens in the frontend are mainly managed by the `TokenService` class. This class is encharge of providing the `accessToken`, initializing the session and refreshing the `accessToken` automatically till the `token` gets invalid. When closing the application and opening again the user won’t need to login again (if the `token` is valid), how is done this?
@@ -259,6 +335,7 @@ The automatically refresh token works as follow: a client ask for the `accessTo
 3. The `accessToken` has expired but the `token` not, so we refresh the token by calling the REST API.
 4. Everything is ok and we just give the client the `accessToken`.
 
+<!-- TOC --><a name="512-handling-api-responses"></a>
 ### 5.1.2. Handling API Responses
 
 Each endpoint from the REST API that the frontend consumes has its own singleton service for three main reasons:
@@ -333,6 +410,7 @@ The date when is logged is stored twice, one for the `accessToken` and the other
 1. When the `accessToken` is expired, so it can be refreshed and it date is updated
 2. When the `refreshToken` is expired, so can be thrown an `IllegalAccessException` and the controller moves the user to the login screen.
 
+<!-- TOC --><a name="513-appearance"></a>
 ### 5.1.3. Appearance
 
 <p align="center">
@@ -346,12 +424,14 @@ The date when is logged is stored twice, one for the `accessToken` and the other
 
 For more images see the section [https://github.com/MrCharlesSG/Insurance-Documentation/blob/main/documents/Interoperability/Interoperability.md#appearance](https://github.com/MrCharlesSG/Insurance-Documentation/blob/main/documents/Interoperability/Interoperability.md#appearance)
 
+<!-- TOC --><a name="52-react-native-frontend"></a>
 ## 5.2. React Native Frontend
 
 The React Native frontend is a mobile application providing an interface for users to interact with the system on mobile devices. Follows the component-based architecture, where each of the elements of the views are components. The components uses the `GlobalProvider` to call the functions that consume the RESTful API. 
 
 This `GlobalProvider` is the component where all the views are wrapped and enable them to use the Context. This context store `useState` for managing the user logged, the tokens , and to set if the user is logged or not. 
 
+<!-- TOC --><a name="521-authentication-flow"></a>
 ### 5.2.1. Authentication Flow
 
 The way the React Native application authenticate is similar to the JavaFX frontend. 
@@ -366,6 +446,7 @@ The way the React Native application authenticate is similar to the JavaFX front
     3. The access token is returned
 4. The functions call the API with the `accessToken` if everything went correctly.
 
+<!-- TOC --><a name="522-handling-api-reponses"></a>
 ### 5.2.2. Handling API Reponses
 
 All functions that access the backend need the context for getting the tokens and are separated in files according to what they access: `sb-driver.js`,`sb-report.js`,`sb-vehicle.js`,`sb-auth`, and `sb-token.js` (this file also store the logic for “storing” the sessions). All the functions uses `axios` to call the REST API.
@@ -391,6 +472,7 @@ export async function acceptReport(context, reportId, damages){
 }
 ```
 
+<!-- TOC --><a name="523-appearance"></a>
 ### 5.2.3. Appearance
 
 To see better how the app works here is a video of 1 minute of all the use cases: [Link to video](https://github.com/MrCharlesSG/Insurance-Documentation/blob/main/readme-resources/readme-videos/react-native-usecase.mp4)
@@ -406,14 +488,18 @@ To see better how the app works here is a video of 1 minute of all the use cases
 
 
 
+<!-- TOC --><a name="6-authentication"></a>
 # 6. Authentication
 
+<!-- TOC --><a name="61-overview-of-jwt"></a>
 ## 6.1. Overview of JWT
 
 JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. In this project, JWT is used to manage user authentication and authorization.
 
+<!-- TOC --><a name="6-api-endpoints"></a>
 # 6. API Endpoints
 
+<!-- TOC --><a name="61-list-of-endpoints"></a>
 ## 6.1. List of Endpoints
 
 - Auth
@@ -441,8 +527,10 @@ JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and s
     - **Associate Driver**
     - **Disassociate Driver**
 
+<!-- TOC --><a name="62-auth"></a>
 ## 6.2. Auth
 
+<!-- TOC --><a name="621-login"></a>
 ### 6.2.1. Login
 
 - **URL**: `/auth/api/v1/login`
@@ -468,6 +556,7 @@ JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and s
     ```
     
 
+<!-- TOC --><a name="622-register"></a>
 ### 6.2.2. Register
 
 The register in the V1.0 of the application is only available for vehicles, nevertheless for scalability measures the response return the wrapped information of the new vehicle. 
@@ -516,6 +605,7 @@ The register in the V1.0 of the application is only available for vehicles, neve
     ```
     
 
+<!-- TOC --><a name="623-refresh-token"></a>
 ### 6.2.3. Refresh Token
 
 - **URL**: `/auth/api/v1/refresh`
@@ -559,6 +649,7 @@ The register in the V1.0 of the application is only available for vehicles, neve
     ```
     
 
+<!-- TOC --><a name="624-logout"></a>
 ### 6.2.4.  Logout
 
 This endpoint is authenticated, so that is how the backend knows who is the user logging out
@@ -591,8 +682,10 @@ This endpoint is authenticated, so that is how the backend knows who is the user
     ```
     
 
+<!-- TOC --><a name="63-vehicle"></a>
 ## 6.3. Vehicle
 
+<!-- TOC --><a name="631-get-vehicle-by-id"></a>
 ### 6.3.1. Get Vehicle by ID
 
 - **URL**: `/vehicles/{id}`
@@ -649,6 +742,7 @@ This endpoint is authenticated, so that is how the backend knows who is the user
     ```
     
 
+<!-- TOC --><a name="632-get-vehicle-by-plate"></a>
 ### 6.3.2. Get Vehicle by Plate
 
 - **URL**: `/vehicles/byPlate`
@@ -705,6 +799,7 @@ This endpoint is authenticated, so that is how the backend knows who is the user
     ```
     
 
+<!-- TOC --><a name="633-get-all-vehicles"></a>
 ### 6.3.3. Get All Vehicles
 
 - **URL**: `/vehicles`
@@ -767,6 +862,7 @@ This endpoint is authenticated, so that is how the backend knows who is the user
     ```
     
 
+<!-- TOC --><a name="634-create-vehicle"></a>
 ### 6.3.4. Create Vehicle
 
 - **URL**: `/vehicles`
@@ -836,6 +932,7 @@ This endpoint is authenticated, so that is how the backend knows who is the user
     ```
     
 
+<!-- TOC --><a name="635-update-vehicle"></a>
 ### 6.3.5. Update Vehicle
 
 - **URL**: `/vehicles/{id}`
@@ -915,6 +1012,7 @@ This endpoint is authenticated, so that is how the backend knows who is the user
     ```
     
 
+<!-- TOC --><a name="636-delete-vehicle"></a>
 ### 6.3.6. Delete Vehicle
 
 - **URL**: `/vehicles/{id}`
