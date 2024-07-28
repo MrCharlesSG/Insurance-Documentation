@@ -393,7 +393,7 @@ export async function acceptReport(context, reportId, damages){
 
 ### 5.2.3. Appearance
 
-To see better how the app works here is a video of 1 minute of all the use cases:
+To see better how the app works here is a video of 1 minute of all the use cases: [Link to video](https://github.com/MrCharlesSG/Insurance-Documentation/blob/main/readme-resources/readme-videos/react-native-usecase.mp4)
 
 <p align="center">
   <img src="readme-resources/readme-images/WhatsApp_Image_2024-07-27_at_18.50.00_(2).jpeg" width="45%" height="45%" />
