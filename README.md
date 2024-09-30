@@ -296,7 +296,7 @@ The server does not return domain entities directly; instead, it returns Data Tr
 The typical flow of a RESTful call is as follows:
 
 1. The HTTP call is made and the controller handles it.
-2. An aspect validate the input of the call (if required).
+2. An aspect validates the input of the call (if required).
 3. The controller calls the relevant service. Sometimes, the service needs to call other services and eventually its repository (e.g., `ReportService` calls `ReportRepository` at the end of its function). If a controller needs to access a new repository, it must do so through a service, even if the required data is raw.
 4. The service calls the repository and returns the data mapped into a DTO.
 
