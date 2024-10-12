@@ -1,5 +1,5 @@
-<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
-<!-- TOC --><a name="insurance-documentation"></a>
+# Insurance Documentation
+
 - [1. Introduction](#1-introduction)
    * [1.1. Overview](#11-overview)
    * [1.2. Purpose](#12-purpose)
@@ -47,7 +47,7 @@
       + [6.3.6. Delete Vehicle](#636-delete-vehicle)
 
 <!-- TOC end -->
-# Insurance Documentation
+
 
 
 <!-- TOC --><a name="1-introduction"></a>
